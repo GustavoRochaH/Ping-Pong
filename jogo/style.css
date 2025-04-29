@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  canvas {
+    display: block;
+    margin: 20px auto;
+    background: #111;
+    border: 2px solid #fff;
+  }
+  select {
+    margin-top: 10px;
+  }
+  
