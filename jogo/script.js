@@ -53,15 +53,25 @@ function updateCPU() {
 }
 
 function spawnPowerUp() {
-  if (powerUps.length < 5 && Math.random() < 0.01) {
-    const types = ['aumentar', 'duplicar'];
-    powerUps.push({
+  if (powerUps.length < 3 && Math.random() < 0.01) {
+    const powerUp = {
       x: Math.random() * (canvas.width - 20) + 10,
       y: Math.random() * (canvas.height - 20) + 10,
       r: 10,
-      type: types[Math.floor(Math.random() * types.length)]
-    });
+    };
+    powerUps.push(powerUp);
+
+    setTimeout(() => {
+      powerUps = powerUps.filter(p => p !== powerUp);
+    }, 5000);
   }
+}
+
+function applyPowerUpEffect(target) {
+  target.h += 40;
+  setTimeout(() => {
+    target.h -= 40;
+  }, 5000);
 }
 
 function checkPowerUpCollisionBall(ballObj) {
@@ -70,15 +80,13 @@ function checkPowerUpCollisionBall(ballObj) {
     const dy = ballObj.y - p.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
     if (dist < ballObj.r + p.r) {
-      if (p.type === 'aumentar') {
-        player.h += 30;
-      } else if (p.type === 'duplicar') {
-        const newBall = { ...ball };
-        resetBall(newBall);
-        extraBalls.push(newBall);
-        setTimeout(() => {
-          extraBalls = extraBalls.filter(b => b !== newBall);
-        }, 10000);
+      // Decide quem está mais próximo: player ou CPU
+      const distToPlayer = Math.abs(player.x - ballObj.x);
+      const distToCPU = Math.abs(cpu.x - ballObj.x);
+      if (distToPlayer < distToCPU) {
+        applyPowerUpEffect(player);
+      } else {
+        applyPowerUpEffect(cpu);
       }
       return false;
     }
@@ -94,28 +102,32 @@ function moveBall(ballObj) {
   ballObj.x += ballObj.dx;
   ballObj.y += ballObj.dy;
 
-  if (ballObj.y + ballObj.r > canvas.height || ballObj.y - ballObj.r < 0) ballObj.dy *= -1;
+  if (ballObj.y + ballObj.r > canvas.height || ballObj.y - ballObj.r < 0) {
+    ballObj.dy *= -1;
+  }
 
   if (
     ballObj.x - ballObj.r < player.x + player.w &&
-    ballObj.y > player.y && ballObj.y < player.y + player.h
+    ballObj.x + ballObj.r > player.x &&
+    ballObj.y + ballObj.r > player.y &&
+    ballObj.y - ballObj.r < player.y + player.h
   ) {
     ballHits++;
     let speed = (baseSpeed + ballHits * 0.2) * ballSpeedMultiplier[dificuldade];
     ballObj.dx = Math.abs(speed);
-    if (ballObj.x < canvas.width / 2) ballObj.dx *= -1;
     let angle = (Math.random() * Math.PI / 2) - Math.PI / 4;
     ballObj.dy = speed * Math.sin(angle);
   }
 
   if (
     ballObj.x + ballObj.r > cpu.x &&
-    ballObj.y > cpu.y && ballObj.y < cpu.y + cpu.h
+    ballObj.x - ballObj.r < cpu.x + cpu.w &&
+    ballObj.y + ballObj.r > cpu.y &&
+    ballObj.y - ballObj.r < cpu.y + cpu.h
   ) {
     ballHits++;
     let speed = (baseSpeed + ballHits * 0.2) * ballSpeedMultiplier[dificuldade];
     ballObj.dx = -Math.abs(speed);
-    if (ballObj.x > canvas.width / 2) ballObj.dx *= -1;
     let angle = (Math.random() * Math.PI / 2) - Math.PI / 4;
     ballObj.dy = speed * Math.sin(angle);
   }
@@ -123,7 +135,9 @@ function moveBall(ballObj) {
   if (ballObj.x + ballObj.r < 0) {
     cpu.score++;
     resetBall(ballObj);
-  } else if (ballObj.x - ballObj.r > canvas.width) {
+  }
+
+  if (ballObj.x - ballObj.r > canvas.width) {
     player.score++;
     resetBall(ballObj);
   }
@@ -139,9 +153,11 @@ function draw() {
   extraBalls.forEach(drawBall);
 
   powerUps.forEach(p => {
-    drawCircle(p.x, p.y, p.r, p.type === 'aumentar' ? 'green' : 'blue');
+    drawCircle(p.x, p.y, p.r, 'yellow');
   });
 
+  ctx.fillStyle = "white";
+  ctx.font = "16px Arial";
   ctx.fillText(`Player: ${player.score}`, 100, 20);
   ctx.fillText(`CPU: ${cpu.score}`, canvas.width - 150, 20);
 }
