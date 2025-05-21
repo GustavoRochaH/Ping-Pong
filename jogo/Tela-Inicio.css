@@ -1,0 +1,31 @@
+body{
+    background-color: purple;
+    text-align: center;
+}
+
+a{
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 5vh;
+    
+}
+
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+h1{
+    font-size: 15vh;
+}
+
+img{
+    margin-left: 100%;
+}
+

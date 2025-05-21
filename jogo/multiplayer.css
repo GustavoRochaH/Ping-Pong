@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    background: #9d00ff;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  canvas {
+    display: block;
+    margin: 20px auto;
+    background: #111;
+    border: 2px solid #fff;
+  }
+  
+  select {
+    margin-top: 10px;
+  }
+  
+  a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  a:hover {
+    background-color: #ccc;
+  }
+  
