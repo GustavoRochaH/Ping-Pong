@@ -4,7 +4,7 @@
 Marcar o maximo de pontos no adversario e defender/rebater a bola de entrar na sua area
 
 ##  Mecânica Principal
-- o jogar usa as cetas para movimentar a barra de proteção
+- Usar a cetas ou o mouse para movimentar a barra de proteção
 - Cada acerto vale 1 ponto.
 - Quem marcar 3 acertos primeiro ganha
 
@@ -27,7 +27,7 @@ O jogo se passa num fundo preto com foco na bola branca que n pode ultrapassar a
 ---
 
 ##  Como Jogar
-- Use as cetas ou o mouse para mover a barra.
+- Usar as cetinhas, WASD ou o mouse para movimentar as barras.
 - Cada acerto vale 1 ponto.
 - Se marcar 3 pontos vence
 
@@ -35,12 +35,13 @@ O jogo se passa num fundo preto com foco na bola branca que n pode ultrapassar a
 
 ##Melhorias futuras
 
--nives de deificuldade facil,medio e dificil
+-Adicionar sons de impacto e de vitória e derrota
 
 ##Funcionalidades
 
 -Placar de pontos
--Sons de impacto,vitoria e derrota
+-Niveis de dificuldade
+-powerups
 
 ##Como Executar
 
