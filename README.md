@@ -27,7 +27,7 @@ O jogo se passa num fundo preto com foco na bola branca que n pode ultrapassar a
 ---
 
 ##  Como Jogar
-- Use as cetas para mover sua barra
+- Use as cetas ou o mouse para mover a barra.
 - Cada acerto vale 1 ponto.
 - Se marcar 3 pontos vence
 
@@ -40,7 +40,6 @@ O jogo se passa num fundo preto com foco na bola branca que n pode ultrapassar a
 ##Funcionalidades
 
 -Placar de pontos
--Timer de Partida
 -Sons de impacto,vitoria e derrota
 
 ##Como Executar
