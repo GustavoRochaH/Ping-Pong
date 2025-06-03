@@ -6,7 +6,7 @@ Marcar o maximo de pontos no adversario e defender/rebater a bola de entrar na s
 ##  Mecânica Principal
 - Usar a cetas ou o mouse para movimentar a barra de proteção
 - Cada acerto vale 1 ponto.
-- Quem marcar 3 acertos primeiro ganha
+- Quem marcar mais acertos ganha
 
 ##  Público-Alvo
 Voltado para pessoas de todas as idades que gostam de jogos casuais, rápidos e desafiadores.
